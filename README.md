@@ -31,7 +31,7 @@ I am a final-year B.Tech IT student focused on building **scalable, distributed 
 
 
 
-### 🚦 [API Rate Limiter]([https://github.com/Vishal-Sharma87](https://github.com/Vishal-Sharma87/TokenBasedApiRateLimiter))
+### 🚦 [API Rate Limiter](https://github.com/Vishal-Sharma87/TokenBasedApiRateLimiter)
 - **Concept:** Implemented using the **Token Bucket Algorithm**.
 - **Impact:** Ensures system stability by preventing API abuse and managing traffic spikes.
 
