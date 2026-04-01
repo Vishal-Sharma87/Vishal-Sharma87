@@ -27,19 +27,19 @@ I am a final-year B.Tech IT student focused on building **scalable, distributed 
   - 🔍 **Metadata-first result fetching** — clients always query job metadata first; the system hits the database to fetch the actual result **only when status is `COMPLETED`**, avoiding unnecessary DB calls for in-progress or failed jobs
 
 ---
-
-### 🔗 [URL Shortener – Secure & Scalable Backend](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
-*A high-performance, secure URL shortening service designed with scalability, reliability, and real-time security at its core.*
-
-- **Tech Stack:** Java, Spring Boot, Redis, Apache Kafka, MongoDB, JWT Authentication
+ 
+### 🔗 [URL Shortener – Analytics, Safety Verdicts & Secure Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
+*A backend-driven URL shortening service that enforces safety verdicts on every redirect, tracks click analytics non-blocking, and secures all APIs with stateless JWT authentication.*
+ 
+- **Tech Stack:** Java, Spring Boot, Spring Security, Apache Kafka, Redis, MongoDB, JavaScript
 - **Key Features:**
-  - 🔐 Secure authentication and authorization using **JWT**
-  - 🛡️ Intelligent **async malicious URL detection** to prevent phishing and spam
-  - ⚡ High-speed redirection powered by **Redis caching**
-  - 📊 Event-driven architecture with **Kafka** for real-time analytics and monitoring
-  - 📧 OTP-verified abuse reporting with real-time email notifications via **SendGrid**
-  - 🚀 Scalable backend designed for high throughput and low latency
-
+  - 🛡️ **Three-tier safety verdict system** — every redirect is evaluated as `SAFE`, `SUSPICIOUS`, or `MALICIOUS`; suspicious links show a user confirmation page, malicious links are blocked entirely
+  - 📊 **Non-blocking click analytics** — an intermediate HTML page uses JavaScript to capture device, browser, viewport, and timezone data before redirecting; tracking failure never blocks the user
+  - 🔐 **Stateless JWT authentication** — all APIs secured with short-lived 10-minute Bearer tokens; no server-side sessions
+  - ⚡ **Redis caching** for high-speed short URL lookups and redirection
+  - 📨 **Kafka-driven analytics pipeline** — click events published asynchronously, keeping the redirection path low-latency
+  - ⚙️ **Environment-based config management** — default config acts as a blueprint; environment variables drive all environment-specific values with no codebase changes needed
+ 
 ---
 
 ## 💻 Tech Stack
