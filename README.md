@@ -10,7 +10,7 @@ I am a final-year B.Tech IT student focused on building **scalable, distributed 
 * 🚀 **Currently:** Building event-driven, async backend systems with job queuing, retry logic, and worker orchestration.
 * 🧠 **Learning:** Distributed systems (Consistency, Fault Tolerance) and Cloud Infrastructure (AWS/Docker).
 * 🎯 **Goal:** Developing production-ready APIs and mastering system design for large-scale applications.
-* 🧩 **DSA:** Solving **300+ problems** on LeetCode — actively documenting solutions with production-style clarity in my [DSA-Revision-Java](https://github.com/Vishal-Sharma87/DSA-Revision-Java) repo.
+* 🧩 **DSA:** Solving **300+ problems** on LeetCode — actively adding dsa patterns/problems with production-style clarity in my [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java) repo.
 
 ---
 
