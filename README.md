@@ -1,68 +1,86 @@
 # Hi there, I'm Vishal Sharma! 👋
+
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=0077B5&center=true&vCenter=true&width=435&lines=Java+Backend+Developer;Spring+Boot+Enthusiast;System+Design+Learner;Problem+Solver" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=0077B5&center=true&vCenter=true&width=500&lines=Distributed+Systems+Engineer;Fault-Tolerant+Backend+Architect;Java+%C2%B7+Spring+Boot+%C2%B7+Redis+%C2%B7+Kafka" alt="Typing SVG" />
 </p>
+
+---
 
 ### 🛠️ About Me
 
-I am a final-year B.Tech IT student focused on building **scalable, distributed backend systems**. I enjoy deconstructing complex architecture into simple, efficient solutions.
+I architect fault-tolerant backend infrastructure built for scale and reliability.
 
-* 🚀 **Currently:** Building event-driven, async backend systems with job queuing, retry logic, and worker orchestration.
-* 🧠 **Learning:** Distributed systems (Consistency, Fault Tolerance) and Cloud Infrastructure (AWS/Docker).
-* 🎯 **Goal:** Developing production-ready APIs and mastering system design for large-scale applications.
-* 🧩 **DSA:** Solving **300+ problems** on LeetCode — actively adding dsa patterns/problems with production-style clarity in my [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java) repo.
+- 🚀 **Currently:** Building distributed async job processing systems with Redis-backed priority queues, atomic Lua scripts, and recovery schedulers
+- 🎯 **Targeting:** SDE-1 roles at product companies and mid-to-unicorn startups
+- 🧩 **DSA:** 300+ problems solved across Graphs, DP, Backtracking, Trees, and Binary Search
 
 ---
 
 ### 🚀 Featured Projects
 
-### 🚦 [Traffic Control Service – Async Job Processing Backend](https://github.com/Vishal-Sharma87/traffic-control-service)
-*A production-inspired async request processing system that handles high-throughput workloads through intelligent job queuing, worker orchestration, and fault-tolerant retry mechanisms.*
+### 🚦 [Traffic Control Service — Distributed Async Job Processing](https://github.com/Vishal-Sharma87/traffic-control-service)
+*Fault-tolerant job processing system sustaining 33+ jobs/second with tier-based priority scheduling, heartbeat monitoring, and automated recovery.*
 
-- **Tech Stack:** Java, Spring Boot, Redis, MySQL
+- **Stack:** Java · Spring Boot · Redis · MySQL · Docker
 - **Key Features:**
-  - ⚙️ **Async request processing** — requests are accepted instantly and processed in the background, keeping the API non-blocking
-  - 📋 **Job Queue with Retry Logic & Dead Letter Queue** — failed jobs are retried with backoff; unrecoverable jobs are moved to DLQ for inspection, not silently dropped
-  - 🩺 **WorkerHeartBeatService** — tracks active workers using `ConcurrentHashMap` + `ScheduledExecutorService`; detects stale/dead workers and cancels them cleanly via `AtomicBoolean` + `Future.cancel(true)` with graceful `@PreDestroy` shutdown
-  - 🔍 **Metadata-first result fetching** — clients always query job metadata first; the system hits the database to fetch the actual result **only when status is `COMPLETED`**, avoiding unnecessary DB calls for in-progress or failed jobs
+  - 🏎️ **Priority Queue** — Redis ZSET with atomic Lua scripts — PAID jobs always execute before UNPAID and PUBLIC
+  - 📉 **Fault Tolerance** — Reduced recovery complexity from O(n) to O(log n) via Redis ZSET range queries — two independent schedulers detect heartbeat expiry and max processing time breaches
+  - 🔒 **Admission Control** — Distributed capacity enforcement via Redis atomic counter — multi-instance safe without JVM-local synchronization
+  - 💀 **Resilience** — Permanently failed jobs routed to Dead Letter Queue persisted in MySQL after exhausting tier-specific max retries
+  - 💓 **Heartbeat Monitor** — Detected crashed workers within 500ms by atomically updating processing store scores on every pulse
 
 ---
- 
-### 🔗 [URL Shortener – Analytics, Safety Verdicts & Secure Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
-*A backend-driven URL shortening service that enforces safety verdicts on every redirect, tracks click analytics non-blocking, and secures all APIs with stateless JWT authentication.*
- 
-- **Tech Stack:** Java, Spring Boot, Spring Security, Apache Kafka, Redis, MongoDB, JavaScript
+
+### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
+*Kafka-driven backend reducing link creation from 18s to under 20ms via async VirusTotal scanning across 90+ security engines.*
+
+- **Stack:** Java · Spring Boot · Kafka · MongoDB · Redis · JWT
 - **Key Features:**
-  - 🛡️ **Three-tier safety verdict system** — every redirect is evaluated as `SAFE`, `SUSPICIOUS`, or `MALICIOUS`; suspicious links show a user confirmation page, malicious links are blocked entirely
-  - 📊 **Non-blocking click analytics** — an intermediate HTML page uses JavaScript to capture device, browser, viewport, and timezone data before redirecting; tracking failure never blocks the user
-  - 🔐 **Stateless JWT authentication** — all APIs secured with short-lived 10-minute Bearer tokens; no server-side sessions
-  - ⚡ **Redis caching** for high-speed short URL lookups and redirection
-  - 📨 **Kafka-driven analytics pipeline** — click events published asynchronously, keeping the redirection path low-latency
-  - ⚙️ **Environment-based config management** — default config acts as a blueprint; environment variables drive all environment-specific values with no codebase changes needed
- 
----
-
-## 💻 Tech Stack
-
-| Category | Tools & Technologies |
-| :--- | :--- |
-| **Languages** | ![Java](https://img.shields.io/badge/-Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white) ![C++](https://img.shields.io/badge/-C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) |
-| **Frameworks** | ![Spring Boot](https://img.shields.io/badge/-Spring%20Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white) |
-| **Databases** | ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) |
-| **Caching** | ![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat-square&logo=redis&logoColor=white) |
-| **Messaging** | ![Apache Kafka](https://img.shields.io/badge/-Apache%20Kafka-231F20?style=flat-square&logo=apache-kafka&logoColor=white) |
-| **Concepts** | REST APIs, Event-Driven Architecture, Async Job Processing, Worker Orchestration, Dead Letter Queue, Rate Limiting, Caching, Microservices basics |
-| **Tools** | ![Git](https://img.shields.io/badge/-Git-F05033?style=flat-square&logo=git&logoColor=white) ![Maven](https://img.shields.io/badge/-Maven-C71A36?style=flat-square&logo=apache-maven&logoColor=white) |
-| **Problem Solving** | Data Structures & Algorithms (Java, C++) |
+  - ⚡ **Threat Engine** — Offloaded malware scanning to async Kafka consumer pipeline — reduced link creation from 18s to under 20ms across 90+ security engines
+  - 🛡️ **Redirection Engine** — Enforced 5 safety verdict states — from instant redirect to hard block — via hash-based routing
+  - 🔐 **Auth** — Structurally eliminated bot registrations by enforcing OTP-verified email at every sensitive operation
+  - 🔁 **Abuse Loop** — 3 OTP-verified community reports automatically trigger re-scanning, requiring zero admin intervention
 
 ---
 
-### 🤝 Let's Connect!
+### 🧰 Tech Stack
+
+**Languages**
+
+[![Languages](https://skillicons.dev/icons?i=java,cpp)](https://skillicons.dev)
+
+**Frameworks & Build**
+
+[![Frameworks](https://skillicons.dev/icons?i=spring,maven)](https://skillicons.dev)
+
+**Databases**
+
+[![Databases](https://skillicons.dev/icons?i=mysql,mongodb)](https://skillicons.dev)
+
+**Caching & Messaging**
+
+[![Caching and Messaging](https://skillicons.dev/icons?i=redis,kafka)](https://skillicons.dev)
+
+**Tools**
+
+[![Tools](https://skillicons.dev/icons?i=docker,git,postman,idea)](https://skillicons.dev)
+
+---
+
+### 🐍 Contribution Activity
+
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake.svg" />
+  <img alt="github contribution snake animation" src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake.svg" />
+</picture>
+
+---
+
+### 🤝 Let's Connect
 
 I'm always open to collaborating on open-source projects or discussing backend architecture.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/vishal-sharma87)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/_vishal.sharma03)
-[![Gmail](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:vishalimp03@gmail.com)
-
-<p align="right">(<a href="#top">Back to top</a>)</p>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/vishal-sharma87)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:vishalimp03@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Vishal-Sharma87)
