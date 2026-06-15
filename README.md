@@ -50,7 +50,7 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 - **Format:** Each solution includes JavaDoc, complexity analysis, and inline developer-style comments
 - **Reference:** Striver's DSA Sheet
 
-#### 🏗️ [LLD-Java](https://github.com/Vishal-Sharma87/low-level-design-java)
+#### 🏗️ [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java)
 *Hands-on Low Level Design in Java — built concept by concept from OOP fundamentals to real system case studies.*
 
 - **Blocks Completed:** OOP · SOLID Principles · Design Patterns (Creational, Structural, Behavioral)
