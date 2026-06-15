@@ -53,9 +53,29 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 #### 🏗️ [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java)
 *Hands-on Low Level Design in Java — built concept by concept from OOP fundamentals to real system case studies.*
 
-- **Blocks Completed:** OOP · SOLID Principles · Design Patterns (Creational, Structural, Behavioral)
-- **Case Studies:** Parking Lot ✅ · Elevator System · Notification System · Library Management · Food Delivery · ATM Machine
-- **Patterns Applied:** Singleton · Factory · Builder · Adapter · Decorator · Facade · Strategy · Observer · State
+- **Blocks Completed:** 
+- OOP 
+- SOLID Principles 
+- Design Patterns (Creational, Structural, Behavioral)
+
+- **Case Studies:** 
+- Parking Lot ✅ 
+- Elevator System ✅
+- Notification System 
+- Library Management 
+- Food Delivery 
+- ATM Machine
+
+- **Patterns Applied:** 
+- Singleton 
+- Factory 
+- Builder 
+- Adapter 
+- Decorator 
+- Facade 
+- Strategy 
+- Observer 
+- State
 
 ---
 
