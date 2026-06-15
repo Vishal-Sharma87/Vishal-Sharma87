@@ -43,7 +43,7 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 
 ### 📂 Public Repositories
 
-#### 🧠 [DSA-Revision-Java](https://github.com/Vishal-Sharma87/dsa-solutions-java)
+#### 🧠 [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)
 *Structured DSA practice in Java — problems documented with brute force → memoization → tabulation → space optimized approaches.*
 
 - **Topics Covered:** Arrays · Sorting · Binary Search · Strings · Linked Lists · Recursion · Heaps · Sliding Window · Monotonic Stack · Binary Trees · BST · Graphs · Dynamic Programming
