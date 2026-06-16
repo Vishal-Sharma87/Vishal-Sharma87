@@ -58,7 +58,7 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 - SOLID Principles 
 - Design Patterns (Creational, Structural, Behavioral)
 
-- **Case Studies:** 
+##### **Case Studies:** 
 - Parking Lot ✅ 
 - Elevator System ✅
 - Notification System 
@@ -66,7 +66,7 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 - Food Delivery 
 - ATM Machine
 
-- **Patterns Applied:** 
+##### **Patterns Applied:** 
 - Singleton 
 - Factory 
 - Builder 
