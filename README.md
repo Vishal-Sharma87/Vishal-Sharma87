@@ -41,150 +41,14 @@ _Kafka-driven backend reducing link creation latency from 18s to under 20ms via 
 
 ### 🧰 Tech Stack
 
-<table>
-  <colgroup>
-    <col width="220">
-    <col>
-  </colgroup>
-
-  <tr>
-    <th align="left">Category</th>
-    <th align="left">Skills</th>
-  </tr>
-
-  <tr>
-    <td><b>Languages</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=java" width="48"><br>
-            <sub>Java</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=cpp" width="48"><br>
-            <sub>C++</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td><b>Frameworks & Build</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=spring" width="48"><br>
-            <sub>Spring Boot</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=maven" width="48"><br>
-            <sub>Maven</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=hibernate" width="48"><br>
-            <sub>Hibernate</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td><b>Databases</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=mysql" width="48"><br>
-            <sub>MySQL</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=mongodb" width="48"><br>
-            <sub>MongoDB</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td><b>Caching & Messaging</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=redis" width="48"><br>
-            <sub>Redis</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=kafka" width="48"><br>
-            <sub>Kafka</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td><b>Tools</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=docker" width="48"><br>
-            <sub>Docker</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=git" width="48"><br>
-            <sub>Git</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://go-skill-icons.vercel.app/api/icons?i=postman" width="48"><br>
-            <sub>Postman</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td><b>Testing</b></td>
-    <td>
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/main/icons/Junit%20logo.png" width="48"><br>
-            <sub>JUnit5</sub>
-          </td>
-          <td width="20"></td>
-          <td align="center">
-            <img src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/main/icons/Mockito%20Logo.png" width="48"><br>
-            <sub>Mockito</sub>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-## </table>
-
-### 🐍 Contribution Activity
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake.svg" />
-  <img alt="github contribution snake animation" src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/output/github-snake.svg" />
-</picture>
+| Category                | Skills                          |
+| ----------------------- | ------------------------------- |
+| **Languages**           | Java • C++                      |
+| **Frameworks & Build**  | Spring Boot • Hibernate • Maven |
+| **Databases**           | MySQL • MongoDB                 |
+| **Caching & Messaging** | Redis • Kafka                   |
+| **Tools**               | Docker • Git • Postman          |
+| **Testing**             | JUnit5 • Mockito                |
 
 ---
 
@@ -192,4 +56,4 @@ _Kafka-driven backend reducing link creation latency from 18s to under 20ms via 
 
 🔗 LinkedIn: https://linkedin.com/in/vishal-sharma87
 
-📧 Email: vishalimp03@gmail.com
+📧 Email: [vishalimp03@gmail.com](mailto:vishalimp03@gmail.com)
