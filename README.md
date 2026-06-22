@@ -19,7 +19,7 @@ _Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic 
 
 ---
 
-#### 🔗 URL Shortener — Threat Analysis, Analytics & Verdict-Aware Redirection
+#### 🔗 [URL Shortener — Threat Analysis, Analytics & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
 
 _Kafka-driven backend reducing link creation latency from 18s to under 20ms through asynchronous threat analysis and event-driven processing._
 
