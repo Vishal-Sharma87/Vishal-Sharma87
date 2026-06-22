@@ -1,18 +1,6 @@
-# Hi there, I'm Vishal Sharma! 👋
+# Vishal Sharma — Backend Engineer
 
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=0077B5&center=true&vCenter=true&width=500&lines=Distributed+Systems+Engineer;Fault-Tolerant+Backend+Architect;Java+%C2%B7+Spring+Boot+%C2%B7+Redis+%C2%B7+Kafka" alt="Typing SVG" />
-</p>
-
----
-
-### 🛠️ About Me
-
-I architect fault-tolerant backend infrastructure built for scale and reliability.
-
-- 🚀 **Currently:** Building distributed async job processing systems with Redis-backed priority queues, atomic Lua scripts, and recovery schedulers
-- 🎯 **Targeting:** SDE-1 roles at product companies and mid-to-unicorn startups
-- 🧩 **DSA:** 300+ problems solved across Graphs, DP, Backtracking, Trees, and Binary Search
+> **Currently thinking about:** If a job fails 5 times — first 4 due to heartbeat loss, last one due to timeout — should the DLQ store the final cause, or the full failure history? Does losing those 4 causes matter when logs have already rotated out?
 
 ---
 
@@ -20,105 +8,175 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 
 #### 🚦 [Traffic Control Service — Distributed Async Job Processing](https://github.com/Vishal-Sharma87/traffic-control-service)
 
-_Fault-tolerant job processing system sustaining 33+ jobs/second with tier-based priority scheduling, heartbeat monitoring, and automated recovery._
+_Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic recovery, and crash detection._
 
-- **Stack:** Java · Spring Boot · Redis · MySQL · Docker
-- 🏎️ **Priority Queue** — Redis ZSET with atomic Lua scripts — PAID jobs always execute before UNPAID and PUBLIC
-- 📉 **Fault Tolerance** — Reduced recovery complexity from O(n) to O(log n) via Redis ZSET range queries
-- 🔒 **Admission Control** — Distributed capacity enforcement via Redis atomic counter — multi-instance safe
-- 💀 **Resilience** — Permanently failed jobs routed to Dead Letter Queue in MySQL after exhausting max retries
-- 💓 **Heartbeat Monitor** — Detected crashed workers within 500ms via atomic score updates on every pulse
+- Tier-based priority scheduling — PAID jobs always execute before UNPAID and PUBLIC, enforced atomically via Lua scripts on Redis ZSET
+- Crash recovery complexity dropped from O(n) to O(log n) by switching from linear scan to ZSET range queries
+- Distributed admission control via Redis atomic counters — enforced consistently across multiple instances
+- Heartbeat monitor detects crashed workers within 500ms via atomic score updates on every pulse
+- Terminal failures routed to MySQL Dead Letter Queue after exhausting max retries
+- **Known gap identified post-build:** DLQ stores only the final failure cause — intermediate causes are permanently lost once logs rotate. Redesigning failure-cause tracking to persist per-attempt history for production diagnostics.
 
 ---
 
 #### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
 
-_Kafka-driven backend reducing link creation from 18s to under 20ms via async VirusTotal scanning across 90+ security engines._
+_Kafka-driven backend reducing link creation latency from 18s to under 20ms via async VirusTotal scanning._
 
-- **Stack:** Java · Spring Boot · Kafka · MongoDB · Redis · JWT
-- ⚡ **Threat Engine** — Offloaded malware scanning to async Kafka consumer pipeline — sub-20ms link creation
-- 🛡️ **Redirection Engine** — Enforced 5 safety verdict states — from instant redirect to hard block
-- 🔐 **Auth** — OTP-verified email at every sensitive operation — structurally eliminates bot registrations
-- 🔁 **Abuse Loop** — 3 community reports auto-trigger re-scanning with zero admin intervention
+- Malware scanning offloaded to async Kafka consumer pipeline — link creation stays sub-20ms regardless of scan duration
+- Five-tier safety verdict system controls redirection — from instant pass-through to hard block
+- OTP-verified email at every sensitive operation — structurally eliminates bot registrations
+- Three community abuse reports auto-trigger re-scanning with zero admin intervention
 
 ---
 
-### 📂 Public Repositories
+### 📂 Other Repositories
 
-#### 🧠 [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)
-
-_Structured DSA practice in Java — problems documented with brute force → memoization → tabulation → space optimized approaches._
-
-- **Topics Covered:** Arrays · Sorting · Binary Search · Strings · Linked Lists · Recursion · Heaps · Sliding Window · Monotonic Stack · Binary Trees · BST · Graphs · Dynamic Programming
-- **Format:** Each solution includes JavaDoc, complexity analysis, and inline developer-style comments
-- **Reference:** Striver's DSA Sheet
-
-#### 🏗️ [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java)
-
-_Hands-on Low Level Design in Java — built concept by concept from OOP fundamentals to real system case studies._
-
-##### **Blocks Completed:**
-
-- OOP
-- SOLID Principles
-- Design Patterns (Creational, Structural, Behavioral)
-
-##### **Case Studies:**
-
-- Parking Lot ✅
-- Elevator System ✅
-- Notification System
-- Library Management
-- Food Delivery
-- ATM Machine
-
-##### **Patterns Applied:**
-
-- Singleton
-- Factory
-- Builder
-- Adapter
-- Decorator
-- Facade
-- Strategy
-- Observer
-- State
+| Repo                                                                              | What's inside                                                                                                                                                                       |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)       | Problems across Arrays, Trees, Graphs, DP, and more — each with detailed problem breakdown, clean readable code, and documentation explaining the _why_ behind every logic decision |
+| [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java) | OOP, SOLID, design patterns (Creational, Structural, Behavioral), and case studies — Parking Lot, Elevator System                                                                   |
 
 ---
 
 ### 🧰 Tech Stack
 
 <table>
+  <colgroup>
+    <col width="220">
+    <col>
+  </colgroup>
+
+  <tr>
+    <th align="left">Category</th>
+    <th align="left">Skills</th>
+  </tr>
+
   <tr>
     <td><b>Languages</b></td>
-    <td><img src="https://skillicons.dev/icons?i=java,cpp" title="Java, C++" /></td>
+    <td>
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=java" width="48"><br>
+            <sub>Java</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=cpp" width="48"><br>
+            <sub>C++</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
+
   <tr>
     <td><b>Frameworks & Build</b></td>
-    <td><img src="https://skillicons.dev/icons?i=spring,maven" title="Spring Boot, Maven" /></td>
+    <td>
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=spring" width="48"><br>
+            <sub>Spring Boot</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=maven" width="48"><br>
+            <sub>Maven</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=hibernate" width="48"><br>
+            <sub>Hibernate</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
+
   <tr>
     <td><b>Databases</b></td>
-    <td><img src="https://skillicons.dev/icons?i=mysql,mongodb" title="MySQL, MongoDB" /></td>
+    <td>
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=mysql" width="48"><br>
+            <sub>MySQL</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=mongodb" width="48"><br>
+            <sub>MongoDB</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
+
   <tr>
     <td><b>Caching & Messaging</b></td>
-    <td><img src="https://skillicons.dev/icons?i=redis,kafka" title="Redis, Apache Kafka" /></td>
+    <td>
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=redis" width="48"><br>
+            <sub>Redis</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=kafka" width="48"><br>
+            <sub>Kafka</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
-    <tr>
+
+  <tr>
     <td><b>Tools</b></td>
-    <td><img src="https://skillicons.dev/icons?i=docker,git,postman" title="Docker, Git, Postman" /></td>
+    <td>
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=docker" width="48"><br>
+            <sub>Docker</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=git" width="48"><br>
+            <sub>Git</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=postman" width="48"><br>
+            <sub>Postman</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
   </tr>
+
   <tr>
     <td><b>Testing</b></td>
     <td>
-      <img src="https://img.shields.io/badge/JUnit5-25A162?style=flat-square&logo=junit5&logoColor=white" title="JUnit 5" />
-      <img src="https://img.shields.io/badge/Mockito-78A641?style=flat-square&logoColor=white" title="Mockito" />
+      <table>
+        <tr>
+          <td align="center">
+            <img src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/main/icons/Junit%20logo.png" width="48"><br>
+            <sub>JUnit5</sub>
+          </td>
+          <td width="20"></td>
+          <td align="center">
+            <img src="https://raw.githubusercontent.com/Vishal-Sharma87/Vishal-Sharma87/main/icons/Mockito%20Logo.png" width="48"><br>
+            <sub>Mockito</sub>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-</table>
 
----
+## </table>
 
 ### 🐍 Contribution Activity
 
@@ -130,8 +188,8 @@ _Hands-on Low Level Design in Java — built concept by concept from OOP fundame
 
 ---
 
-### 🤝 Let's Connect
+### 📬 Connect With Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/vishal-sharma87)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:vishalimp03@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Vishal-Sharma87)
+🔗 LinkedIn: https://linkedin.com/in/vishal-sharma87
+
+📧 Email: vishalimp03@gmail.com
