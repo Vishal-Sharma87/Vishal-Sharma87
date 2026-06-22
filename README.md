@@ -19,14 +19,17 @@ _Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic 
 
 ---
 
-#### 🔗 [URL Shortener — Threat Analysis, Analytics & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
+---
 
-_Kafka-driven backend reducing link creation latency from 18s to under 20ms through asynchronous threat analysis and event-driven processing._
+#### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
 
-- Malware scanning offloaded to an asynchronous Kafka pipeline — link creation remains sub-20ms regardless of VirusTotal scan duration
-- Verdict-driven redirection engine enforces five safety states (SAFE, SUSPICIOUS, UNVERIFIED, PENDING_REVERIFICATION, MALICIOUS), ranging from instant redirection to permanent blocking
-- Analytics capture fully decoupled from user navigation — click telemetry is collected via an intermediate tracking layer and forwarded asynchronously without impacting redirect latency
-- Community-driven abuse reporting workflow automatically escalates suspicious links into re-verification pipelines after configurable report thresholds are reached
+_Kafka-driven backend reducing link creation latency from 18s to under 20ms via async VirusTotal scanning._
+
+- Link creation stays sub-20ms — VirusTotal scanning across 90+ engines offloaded entirely to an async Kafka pipeline
+- Redirection enforces five safety verdicts — SAFE passes through instantly, MALICIOUS is permanently blocked, three states in between require explicit user confirmation
+- Analytics fire during page unload via `keepalive: true` on an intermediate tracking page — redirection never waits, data never drops
+- Short-lived, single-use OTP bound to a unique email per operation — every abuse attempt demands a fresh real inbox, making bot automation structurally infeasible
+- Three community abuse reports auto-escalate a link to `PENDING_REVERIFICATION` — no admin intervention required
 
 ---
 
