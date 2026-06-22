@@ -19,14 +19,14 @@ _Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic 
 
 ---
 
-#### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
+#### 🔗 URL Shortener — Threat Analysis, Analytics & Verdict-Aware Redirection
 
-_Kafka-driven backend reducing link creation latency from 18s to under 20ms via async VirusTotal scanning._
+_Kafka-driven backend reducing link creation latency from 18s to under 20ms through asynchronous threat analysis and event-driven processing._
 
-- Malware scanning offloaded to async Kafka consumer pipeline — link creation stays sub-20ms regardless of scan duration
-- Five-tier safety verdict system controls redirection — from instant pass-through to hard block
-- OTP-verified email at every sensitive operation — structurally eliminates bot registrations
-- Three community abuse reports auto-trigger re-scanning with zero admin intervention
+- Malware scanning offloaded to an asynchronous Kafka pipeline — link creation remains sub-20ms regardless of VirusTotal scan duration
+- Verdict-driven redirection engine enforces five safety states (SAFE, SUSPICIOUS, UNVERIFIED, PENDING_REVERIFICATION, MALICIOUS), ranging from instant redirection to permanent blocking
+- Analytics capture fully decoupled from user navigation — click telemetry is collected via an intermediate tracking layer and forwarded asynchronously without impacting redirect latency
+- Community-driven abuse reporting workflow automatically escalates suspicious links into re-verification pipelines after configurable report thresholds are reached
 
 ---
 
