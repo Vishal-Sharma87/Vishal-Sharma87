@@ -19,7 +19,8 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 ### 🚀 Featured Projects
 
 #### 🚦 [Traffic Control Service — Distributed Async Job Processing](https://github.com/Vishal-Sharma87/traffic-control-service)
-*Fault-tolerant job processing system sustaining 33+ jobs/second with tier-based priority scheduling, heartbeat monitoring, and automated recovery.*
+
+_Fault-tolerant job processing system sustaining 33+ jobs/second with tier-based priority scheduling, heartbeat monitoring, and automated recovery._
 
 - **Stack:** Java · Spring Boot · Redis · MySQL · Docker
 - 🏎️ **Priority Queue** — Redis ZSET with atomic Lua scripts — PAID jobs always execute before UNPAID and PUBLIC
@@ -31,7 +32,8 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 ---
 
 #### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
-*Kafka-driven backend reducing link creation from 18s to under 20ms via async VirusTotal scanning across 90+ security engines.*
+
+_Kafka-driven backend reducing link creation from 18s to under 20ms via async VirusTotal scanning across 90+ security engines._
 
 - **Stack:** Java · Spring Boot · Kafka · MongoDB · Redis · JWT
 - ⚡ **Threat Engine** — Offloaded malware scanning to async Kafka consumer pipeline — sub-20ms link creation
@@ -44,44 +46,48 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
 ### 📂 Public Repositories
 
 #### 🧠 [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)
-*Structured DSA practice in Java — problems documented with brute force → memoization → tabulation → space optimized approaches.*
+
+_Structured DSA practice in Java — problems documented with brute force → memoization → tabulation → space optimized approaches._
 
 - **Topics Covered:** Arrays · Sorting · Binary Search · Strings · Linked Lists · Recursion · Heaps · Sliding Window · Monotonic Stack · Binary Trees · BST · Graphs · Dynamic Programming
 - **Format:** Each solution includes JavaDoc, complexity analysis, and inline developer-style comments
 - **Reference:** Striver's DSA Sheet
 
 #### 🏗️ [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java)
-*Hands-on Low Level Design in Java — built concept by concept from OOP fundamentals to real system case studies.*
 
-##### **Blocks Completed:** 
-- OOP 
-- SOLID Principles 
+_Hands-on Low Level Design in Java — built concept by concept from OOP fundamentals to real system case studies._
+
+##### **Blocks Completed:**
+
+- OOP
+- SOLID Principles
 - Design Patterns (Creational, Structural, Behavioral)
 
-##### **Case Studies:** 
-- Parking Lot ✅ 
+##### **Case Studies:**
+
+- Parking Lot ✅
 - Elevator System ✅
-- Notification System 
-- Library Management 
-- Food Delivery 
+- Notification System
+- Library Management
+- Food Delivery
 - ATM Machine
 
-##### **Patterns Applied:** 
-- Singleton 
-- Factory 
-- Builder 
-- Adapter 
-- Decorator 
-- Facade 
-- Strategy 
-- Observer 
+##### **Patterns Applied:**
+
+- Singleton
+- Factory
+- Builder
+- Adapter
+- Decorator
+- Facade
+- Strategy
+- Observer
 - State
 
 ---
 
-
 ### 🧰 Tech Stack
- 
+
 <table>
   <tr>
     <td><b>Languages</b></td>
@@ -111,7 +117,6 @@ I architect fault-tolerant backend infrastructure built for scale and reliabilit
     </td>
   </tr>
 </table>
-
 
 ---
 
