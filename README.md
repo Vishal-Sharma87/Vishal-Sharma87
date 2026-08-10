@@ -6,6 +6,21 @@
 
 ### 🚀 Featured Projects
 
+#### 💳 [Payflo — Event-Driven Payment Backbone](https://github.com/Vishal-Sharma87/payflo)
+
+_Kafka-first payment event processing built for deep distributed-systems fluency — real Kafka, real Redis, real crash testing; payment execution itself is mocked._
+
+- Event-driven backbone spans 8 Kafka topics and consumers with keyed-partition ordering, verified live across consumer-group rebalancing and producer/consumer restarts on a self-hosted KRaft cluster
+- Redis Lua-based atomic ownership claims (CAS) eliminate race conditions across three competing termination consumers, guaranteeing exactly-once state transition per payment
+- ~60ms average message redelivery verified via genuine `kill -9` crash simulation (not graceful shutdown) — measured from partition reassignment to consumer receipt, averaged across repeated trials
+- Idempotent MySQL persistence + at-least-once notification delivery survive mid-transaction crashes across MySQL, Redis, and Kafka — partial-write recovery confirmed live, not just reasoned about
+- 109 JUnit 5 + Mockito tests across three deliberate coverage tiers — caught and fixed a real `UpiValidator` bug (`split("@")` silently dropping trailing empty strings) before it ever ran against production logic
+- **Real bug found via crash testing, not code review:** a duplicate-catch block written for `EntityExistsException` had never actually fired — `EntityManager.persist()` defers constraint violations to flush/commit, where Spring translates them to `DataIntegrityViolationException` instead. Only a genuine `kill -9` crash exposed it. Fixed and re-verified live.
+
+---
+
+---
+
 #### 🚦 [Traffic Control Service — Distributed Async Job Processing](https://github.com/Vishal-Sharma87/traffic-control-service)
 
 _Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic recovery, and crash detection._
@@ -48,7 +63,7 @@ _Kafka-driven backend reducing link creation latency from 18s to under 20ms via 
 | ----------------------- | ------------------------------- |
 | **Languages**           | Java • C++                      |
 | **Frameworks & Build**  | Spring Boot • Hibernate • Maven |
-| **Databases**           | MySQL • MongoDB                 |
+| **Databases**           | MySQL                           |
 | **Caching & Messaging** | Redis • Kafka                   |
 | **Tools**               | Docker • Git • Postman          |
 | **Testing**             | JUnit5 • Mockito                |
@@ -59,4 +74,4 @@ _Kafka-driven backend reducing link creation latency from 18s to under 20ms via 
 
 🔗 LinkedIn: https://linkedin.com/in/vishal-sharma87
 
-📧 Email: [vishalimp03@gmail.com](mailto:vishalimp03@gmail.com)
+📧 Email: [vishal.sharma.dev.87@gmail.com](mailto:vishal.sharma.dev.87@gmail.com)
