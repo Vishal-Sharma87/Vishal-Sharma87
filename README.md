@@ -36,15 +36,18 @@ _Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic 
 
 ---
 
-#### 🔗 [URL Shortener — Async Threat Pipeline & Verdict-Aware Redirection](https://github.com/Vishal-Sharma87/UrlShortener/tree/main)
+#### 🔗 [SmartLink — Verdict-Driven Link Security Platform](https://github.com/Vishal-Sharma87/SmartLink)
 
-_Kafka-driven backend reducing link creation latency from 18s to under 20ms via async VirusTotal scanning._
+_Kafka-driven backend with JWT-secured link ownership, external threat scanning, and verdict-aware redirection — rebuilt and rebranded from an earlier URL-shortener MVP._
 
 - Link creation stays sub-20ms — VirusTotal scanning across 90+ engines offloaded entirely to an async Kafka pipeline
-- Redirection enforces five safety verdicts — SAFE passes through instantly, MALICIOUS is permanently blocked, three states in between require explicit user confirmation
+- JWT-based stateless authentication with ownership-enforced authorization on every link and account operation — no cross-user access to link data
+- Redirection enforces five safety verdicts — `SAFE` passes through instantly, `MALICIOUS` is permanently blocked, three states in between require explicit user confirmation
 - Analytics fire during page unload via `keepalive: true` on an intermediate tracking page — redirection never waits, data never drops
-- Short-lived, single-use OTP bound to a unique email per operation — every abuse attempt demands a fresh real inbox, making bot automation structurally infeasible
+- OTP validated and invalidated atomically in a single Redis Lua script — bound to signup and abuse-report flows only, closing the replay window without a database round trip
 - Three community abuse reports auto-escalate a link to `PENDING_REVERIFICATION` — no admin intervention required
+- Redirect hot-path reworked from a JSON-serialized cache DTO to direct Redis Hash field reads/writes — cut redirect-lookup overhead by removing a full object serialization/deserialization step
+- **Real bug found via the caching refactor:** Lombok's `@ToString` on the `Verdict` enum silently produced `"Verdict.SAFE"` instead of `"SAFE"` when written to Redis. `Enum.valueOf()` couldn't reconstruct it on read, and `multiGet()` returned nulls that surfaced as an NPE several layers downstream. Fix: drop `@ToString` on all Redis-reconstructed enums and standardize on `.name()` as the persistence contract — `toString()` was never meant to be one.
 
 ---
 
@@ -59,14 +62,14 @@ _Kafka-driven backend reducing link creation latency from 18s to under 20ms via 
 
 ### 🧰 Tech Stack
 
-| Category                | Skills                          |
-| ----------------------- | ------------------------------- |
-| **Languages**           | Java • C++                      |
-| **Frameworks & Build**  | Spring Boot • Hibernate • Maven |
-| **Databases**           | MySQL                           |
-| **Caching & Messaging** | Redis • Kafka                   |
-| **Tools**               | Docker • Git • Postman          |
-| **Testing**             | JUnit5 • Mockito                |
+| Category                | Skills                                                  |
+| ----------------------- | ------------------------------------------------------- |
+| **Languages**           | Java • C++                                              |
+| **Frameworks & Build**  | Spring Boot • Spring Security • JWT • Hibernate • Maven |
+| **Databases**           | MySQL • MongoDB                                         |
+| **Caching & Messaging** | Redis • Kafka                                           |
+| **Tools**               | Docker • Git • Postman                                  |
+| **Testing**             | JUnit5 • Mockito                                        |
 
 ---
 
