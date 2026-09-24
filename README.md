@@ -1,75 +1,73 @@
 # Vishal Sharma — Backend Engineer
 
-> **Currently thinking about:** If a job fails 5 times — first 4 due to heartbeat loss, last one due to timeout — should the DLQ store the final cause, or the full failure history? Does losing those 4 causes matter when logs have already rotated out?
+> **Currently thinking about:** How do distributed systems behave when failures happen between boundaries — Kafka redelivery, Redis state transitions, database commits, and worker crashes? The interesting part isn't avoiding failure; it's making recovery deterministic.
 
 ---
 
 ### 🚀 Featured Projects
 
-#### 💳 [Payflo — Event-Driven Payment Backbone](https://github.com/Vishal-Sharma87/payflo)
+#### 💳 [Payflo — Event-Driven Payment Processing System](https://github.com/Vishal-Sharma87/payflo)
 
-_Kafka-first payment event processing built for deep distributed-systems fluency — real Kafka, real Redis, real crash testing; payment execution itself is mocked._
+*Kafka-first payment event processing built to explore distributed-system failure modes — real Kafka, Redis, MySQL, and crash testing; payment execution itself is intentionally mocked.*
 
-- Event-driven backbone spans 8 Kafka topics and consumers with keyed-partition ordering, verified live across consumer-group rebalancing and producer/consumer restarts on a self-hosted KRaft cluster
-- Redis Lua-based atomic ownership claims (CAS) eliminate race conditions across three competing termination consumers, guaranteeing exactly-once state transition per payment
-- ~60ms average message redelivery verified via genuine `kill -9` crash simulation (not graceful shutdown) — measured from partition reassignment to consumer receipt, averaged across repeated trials
-- Idempotent MySQL persistence + at-least-once notification delivery survive mid-transaction crashes across MySQL, Redis, and Kafka — partial-write recovery confirmed live, not just reasoned about
-- 109 JUnit 5 + Mockito tests across three deliberate coverage tiers — caught and fixed a real `UpiValidator` bug (`split("@")` silently dropping trailing empty strings) before it ever ran against production logic
-- **Real bug found via crash testing, not code review:** a duplicate-catch block written for `EntityExistsException` had never actually fired — `EntityManager.persist()` defers constraint violations to flush/commit, where Spring translates them to `DataIntegrityViolationException` instead. Only a genuine `kill -9` crash exposed it. Fixed and re-verified live.
-
----
+* Event-driven payment processing system built around **8 Kafka topics and multiple consumers**, modeling asynchronous payment workflows
+* Designed idempotent MySQL writes and deduplicated payment notifications across **3 race-prone termination consumers**, preventing duplicate customer-facing side effects
+* Verified **sub-60ms consumer redelivery** after simulated crash recovery, confirming idempotent recovery across MySQL, Redis, and Kafka boundaries
+* Used Redis-based coordination to make competing termination consumers safe under concurrent processing and Kafka redelivery
+* Wrote **109 JUnit 5 + Mockito unit tests** across three deliberate coverage tiers, catching a real input-validation bug before runtime
+* **Real bug found through crash testing:** a duplicate-detection path targeting `EntityExistsException` did not fire because `EntityManager.persist()` can defer constraint violations until flush/commit, where Spring translates them into `DataIntegrityViolationException`. The failure was exposed through genuine crash testing and subsequently fixed.
 
 ---
 
-#### 🚦 [Traffic Control Service — Distributed Async Job Processing](https://github.com/Vishal-Sharma87/traffic-control-service)
+#### 🚦 [Traffic Control Service — Distributed Job Orchestration](https://github.com/Vishal-Sharma87/traffic-control-service)
 
-_Fault-tolerant job scheduling engine with Redis-backed priority queues, atomic recovery, and crash detection._
+*Built during my Backend Developer internship at Apana Time Tech Solutions — a fault-tolerant job orchestration engine with Redis-backed priority queues, atomic recovery, worker heartbeat detection, and MySQL-backed failure handling.*
 
-- Tier-based priority scheduling — PAID jobs always execute before UNPAID and PUBLIC, enforced atomically via Lua scripts on Redis ZSET
-- Crash recovery complexity dropped from O(n) to O(log n) by switching from linear scan to ZSET range queries
-- Distributed admission control via Redis atomic counters — enforced consistently across multiple instances
-- Heartbeat monitor detects crashed workers within 500ms via atomic score updates on every pulse
-- Terminal failures routed to MySQL Dead Letter Queue after exhausting max retries
-- **Known gap identified post-build:** DLQ stores only the final failure cause — intermediate causes are permanently lost once logs rotate. Redesigning failure-cause tracking to persist per-attempt history for production diagnostics.
-
----
+* Built a distributed job orchestration engine decoupling **job scheduling from execution** using Redis ZSET priority queues and atomic Lua scripts
+* Sustained **33–37 jobs/sec** under **50–200 concurrent requests** using Redis atomic Lua scripts, with zero job loss during recovery
+* Reduced crashed-worker recovery-scan complexity from **O(n) to O(log n)** using Redis ZSET range queries instead of linear scans
+* Detected crashed workers within **500ms** through heartbeat-driven Redis ZSET range queries
+* Implemented tier-specific retry budgets based on job priority, routing terminal failures to a **MySQL-backed Dead Letter Queue**
+* Used atomic Redis operations to coordinate distributed job ownership and recovery across workers
 
 ---
 
-#### 🔗 [SmartLink — Verdict-Driven Link Security Platform](https://github.com/Vishal-Sharma87/SmartLink)
+#### 🔗 [SmartLink — Verdict-Driven URL Safety Platform](https://github.com/Vishal-Sharma87/SmartLink)
 
-_Kafka-driven backend with JWT-secured link ownership, external threat scanning, and verdict-aware redirection — rebuilt and rebranded from an earlier URL-shortener MVP._
+*Kafka-driven URL safety platform with external threat scanning, Redis-backed caching, JWT authentication, analytics, and verdict-aware redirection.*
 
-- Link creation stays sub-20ms — VirusTotal scanning across 90+ engines offloaded entirely to an async Kafka pipeline
-- JWT-based stateless authentication with ownership-enforced authorization on every link and account operation — no cross-user access to link data
-- Redirection enforces five safety verdicts — `SAFE` passes through instantly, `MALICIOUS` is permanently blocked, three states in between require explicit user confirmation
-- Analytics fire during page unload via `keepalive: true` on an intermediate tracking page — redirection never waits, data never drops
-- OTP validated and invalidated atomically in a single Redis Lua script — bound to signup and abuse-report flows only, closing the replay window without a database round trip
-- Three community abuse reports auto-escalate a link to `PENDING_REVERIFICATION` — no admin intervention required
-- Redirect hot-path reworked from a JSON-serialized cache DTO to direct Redis Hash field reads/writes — cut redirect-lookup overhead by removing a full object serialization/deserialization step
-- **Real bug found via the caching refactor:** Lombok's `@ToString` on the `Verdict` enum silently produced `"Verdict.SAFE"` instead of `"SAFE"` when written to Redis. `Enum.valueOf()` couldn't reconstruct it on read, and `multiGet()` returned nulls that surfaced as an NPE several layers downstream. Fix: drop `@ToString` on all Redis-reconstructed enums and standardize on `.name()` as the persistence contract — `toString()` was never meant to be one.
+* Reduced URL-creation latency from **12–18s to under 20ms** by offloading **90+ VirusTotal engine scans** to an asynchronous Kafka pipeline
+* Measured **3 ms median / 7 ms P95 cached link-resolution latency across 100 requests**, with asynchronous Kafka analytics publishing completing in **1 ms median**
+* Redesigned authentication with **two-stage OTP signup, JWT access tokens, and Redis-Lua-rotated HttpOnly refresh-token cookies**, closing refresh-token replay windows
+* Designed abuse reporting to enforce **one report per user per link** through query-based duplicate detection, automatically flagging links after **3 unique reports**
+* Built verdict-aware redirection around link safety states, integrating external threat analysis before allowing destinations to be reached
+* Published click analytics asynchronously through Kafka so analytics processing does not block the redirect-resolution path
+* Reworked the redirect hot path from JSON-serialized cache DTOs to **direct Redis Hash field reads/writes**, removing unnecessary object serialization/deserialization
+* Deployed the application to a **self-hosted Azure VM** using Docker Compose behind Nginx, resolving a JDK build failure and an IP-forwarding issue
+* **Real caching bug found during refactoring:** Lombok's `@ToString` on the `Verdict` enum produced `"Verdict.SAFE"` instead of `"SAFE"` when persisted to Redis. `Enum.valueOf()` consequently failed to reconstruct the value, with `multiGet()` returning null and the failure surfacing as an NPE downstream. The persistence contract was standardized on `.name()`.
 
 ---
 
 ### 📂 Other Repositories
 
-| Repo                                                                              | What's inside                                                                                                                                                                       |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)       | Problems across Arrays, Trees, Graphs, DP, and more — each with detailed problem breakdown, clean readable code, and documentation explaining the _why_ behind every logic decision |
-| [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java) | OOP, SOLID, design patterns (Creational, Structural, Behavioral), and case studies — Parking Lot, Elevator System                                                                   |
+| Repo                                                                              | What's inside                                                                                                                                                                 |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [dsa-solutions-java](https://github.com/Vishal-Sharma87/dsa-solutions-java)       | Java DSA solutions across Arrays, Trees, Graphs, DP, and other problem-solving topics, with problem breakdowns, readable implementations, and reasoning-focused documentation |
+| [low-level-design-java](https://github.com/Vishal-Sharma87/low-level-design-java) | OOP, SOLID principles, design patterns across Creational, Structural, and Behavioral categories, plus case studies such as Parking Lot and Elevator System                    |
 
 ---
 
 ### 🧰 Tech Stack
 
-| Category                | Skills                                                  |
-| ----------------------- | ------------------------------------------------------- |
-| **Languages**           | Java • C++                                              |
-| **Frameworks & Build**  | Spring Boot • Spring Security • JWT • Hibernate • Maven |
-| **Databases**           | MySQL • MongoDB                                         |
-| **Caching & Messaging** | Redis • Kafka                                           |
-| **Tools**               | Docker • Git • Postman                                  |
-| **Testing**             | JUnit5 • Mockito                                        |
+| Category                   | Skills                                                               |
+| -------------------------- | -------------------------------------------------------------------- |
+| **Languages**              | Java                                                                 |
+| **Frameworks & Libraries** | Spring Boot • Spring Security • Spring Data JPA • Hibernate          |
+| **Databases & Caching**    | MySQL • MongoDB • Redis • Redis Lua Scripting • Redis ZSET           |
+| **Messaging**              | Apache Kafka                                                         |
+| **Cloud / Infrastructure** | Docker • Docker Compose • Azure VM • Azure Key Vault • Linux • Nginx |
+| **Testing & Tools**        | JUnit 5 • Mockito • Maven • Git • GitHub Actions • Postman           |
+| **Core Concepts**          | DSA • OOP • LLD • DBMS • OS • CN • REST APIs • JWT                   |
 
 ---
 
